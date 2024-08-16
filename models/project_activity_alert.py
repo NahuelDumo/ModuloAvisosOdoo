@@ -1,6 +1,4 @@
-from odoo import models, api
-from urllib3 import fields
-
+from odoo import models, fields, api
 
 class ProjectActivityAlert(models.Model):
     _inherit = 'res.users'
@@ -11,7 +9,7 @@ class ProjectActivityAlert(models.Model):
         pending_activities = self.env['project.task'].search([
             ('user_id', '=', user.id),
             ('stage_id.fold', '=', False),
-            ('date_deadline', '<=', fields.Date.today()),
+            ('date_deadline', '<=', fields.Date.today()),  # Corregido: 'fields' desde 'odoo'
         ])
 
         if pending_activities:
