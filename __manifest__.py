@@ -5,9 +5,6 @@
     'author': 'Nahuel Dumo',
     'category': 'Productivity',
     'depends': ['base', 'project'],
-    'data': [
-        'security/ir.model.access.csv',
-    ],
     'installable': True,
     'application': False,
 }
