@@ -1,0 +1,14 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Acción programada para verificar actividades pendientes -->
+        <record id="ir_cron_check_user_activities" model="ir.cron">
+            <field name="name">Check User Activities</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="state">code</field>
+            <field name="code">model._check_user_activities()</field>
+            <field name="interval_number">1</field> <!-- Ejecutar cada hora -->
+            <field name="interval_type">hours</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>
