@@ -11,7 +11,7 @@ class ResUsers(models.Model):
         store=False
     )
 
-    @api.depends('id')
+    @api.depends()
     def _compute_pending_activities_message(self):
         for user in self:
             pending_activities = self.env['project.task'].search([
