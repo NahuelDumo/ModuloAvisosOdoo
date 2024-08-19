@@ -4,9 +4,10 @@
     'summary': 'Alert users with pending project activities upon login',
     'author': 'Nahuel Dumo',
     'category': 'Project',
-    'depends': ['base', 'project'],  # No se incluye el módulo "web"
+    'depends': ['base', 'project'],
     'data': [
-        'data/ir_cron_data.xml',  # Archivo que define la tarea cron
+        'views/project_activity_alert_views.xml',  # Archivo que contiene la vista modificada
+        'data/ir_cron_data.xml',  # Archivo que define la tarea cron (si aplica)
     ],
     'installable': True,
     'application': False,

@@ -6,7 +6,7 @@
             <field name="name">Check User Activities</field>
             <field name="model_id" ref="base.model_res_users"/>
             <field name="state">code</field>
-            <field name="code">model.project_activity_alert</field>
+            <field name="code">model._check_pending_activities()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
