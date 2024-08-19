@@ -1,12 +1,12 @@
 {
     'name': 'Project Activity Alert',
     'version': '1.0',
-    'summary': 'Notifica al usuario sobre actividades pendientes al iniciar sesión.',
+    'summary': 'Alert users with pending project activities upon login',
     'author': 'Nahuel Dumo',
-    'category': 'Productivity',
-    'depends': ['base', 'project'],
+    'category': 'Project',
+    'depends': ['base', 'project'],  # No se incluye el módulo "web"
     'data': [
-        'data/ir_cron_data.xml',  # Archivo XML con la definición del cron job
+        # No se necesita vista o data específica
     ],
     'installable': True,
     'application': False,
