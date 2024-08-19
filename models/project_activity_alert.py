@@ -1,12 +1,10 @@
 from odoo import models, fields, api
-import logging
-
-_logger = logging.getLogger(__name__)
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
     def _check_pending_activities(self):
+        print("Checking pending activities for user:", self.env.user.name)
         user = self.env.user
         pending_activities = self.env['project.task'].search([
             ('user_id', '=', user.id),
@@ -15,15 +13,16 @@ class ResUsers(models.Model):
         ])
 
         if pending_activities:
-            # Mostrar notificación al usuario
             message = f'Tienes {len(pending_activities)} actividades pendientes en el proyecto.\nPor favor revísalas.'
-            # Utilizar un método de notificación sin el módulo "web"
-            # Puedes usar la funcionalidad 'notify' si no quieres usar el módulo web
+            print("Sending notification:", message)
             user.notify_warning(message=message)
+        else:
+            print("No pending activities found.")
 
     @api.model
     def _login(self):
-        """Override the login method to check for pending activities."""
+        print("User login method called.")
         result = super(ResUsers, self)._login()
+        print("Checking for pending activities after login.")
         self._check_pending_activities()
         return result
