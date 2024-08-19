@@ -15,12 +15,15 @@ class ResUsers(models.Model):
         ])
 
         if pending_activities:
-            # Aquí podrías utilizar otras formas de notificación si no quieres usar el módulo "web"
+            # Mostrar notificación al usuario
             message = f'Tienes {len(pending_activities)} actividades pendientes en el proyecto.\nPor favor revísalas.'
+            # Utilizar un método de notificación sin el módulo "web"
+            # Puedes usar la funcionalidad 'notify' si no quieres usar el módulo web
             user.notify_warning(message=message)
 
     @api.model
     def _login(self):
         """Override the login method to check for pending activities."""
-        super(ResUsers, self)._login()
+        result = super(ResUsers, self)._login()
         self._check_pending_activities()
+        return result

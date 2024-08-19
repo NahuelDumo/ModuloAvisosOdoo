@@ -6,7 +6,7 @@
     'category': 'Project',
     'depends': ['base', 'project'],  # No se incluye el módulo "web"
     'data': [
-        # No se necesita vista o data específica
+        'data/ir_cron_data.xml',  # Archivo que define la tarea cron
     ],
     'installable': True,
     'application': False,
