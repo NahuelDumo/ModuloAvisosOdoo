@@ -1,26 +1,25 @@
 from odoo import models, fields, api
-import logging
 
-_logger = logging.getLogger(__name__)
+class ActivityReminder(models.Model):
 
-class ResUsers(models.Model):
-    _inherit = 'res.users'
+    @api.model
+    def get_pending_activities(self):
+        # Obtener las tareas pendientes del usuario actual
+        tasks = self.env['project.task'].search([('user_id', '=', self.env.uid), ('stage_id', '=', False)])
+        return len(tasks)
 
-    pending_activities_message = fields.Char(
-        compute='_compute_pending_activities_message',
-        store=False
-    )
+    @api.model
+    def get_reminder_message(self):
+        pending_activities = self.get_pending_activities()
+        if pending_activities > 0:
+            return f'Tienes {pending_activities} actividades pendientes. Por favor, revise las tareas asignadas.'
+        else:
+            return ''
 
-    def _compute_pending_activities_message(self):
-        for user in self:
-            pending_activities = self.env['project.task'].search([
-                ('user_id', '=', user.id),
-                ('stage_id.fold', '=', False),
-                ('date_deadline', '<=', fields.Date.today()),
-            ])
-
-            if pending_activities:
-                user.pending_activities_message = f'Tienes {len(pending_activities)} actividades pendientes en el proyecto.\nPor favor revísalas.'
-                _logger.info(f"Usuario {user.name}: {user.pending_activities_message}")
-            else:
-                user.pending_activities_message = ''
+    @api.model
+    def get_reminder_color(self):
+        pending_activities = self.get_pending_activities()
+        if pending_activities > 0:
+            return 'danger'  # Rojo
+        else:
+            return 'success'  # Verde

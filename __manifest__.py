@@ -6,7 +6,8 @@
     'category': 'Project',
     'depends': ['base', 'project'],
     'data': [
-            'views/assets.xml',
+            'views/view.xml',
+            'templates/templates.xml'
     ],
     'installable': True,
     'application': False,
