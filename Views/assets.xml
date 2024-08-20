@@ -1,7 +1,38 @@
 <odoo>
-    <template id="assets_backend" name="activity_notification assets" inherit_id="web.assets_backend">
-        <xpath expr="." position="inside">
-            <script type="text/javascript" src="../static/src/js/activity_notification.js"></script>
-        </xpath>
-    </template>
+    <record id="view_activity_tree" model="ir.ui.view">
+        <field name="name">activity.tree</field>
+        <field name="model">mail.activity</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="res_name"/>
+                <field name="date_deadline"/>
+                <field name="state"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_activity_form" model="ir.ui.view">
+        <field name="name">activity.form</field>
+        <field name="model">mail.activity</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="res_name"/>
+                        <field name="date_deadline"/>
+                        <field name="state"/>
+                        <field name="user_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para acceder a la vista de actividades -->
+    <record id="action_activity" model="ir.actions.act_window">
+        <field name="name">Activities</field>
+        <field name="res_model">mail.activity</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 </odoo>
