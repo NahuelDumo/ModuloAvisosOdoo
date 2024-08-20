@@ -5,6 +5,8 @@ class ActivityReminder(models.Model):
 
     _description = 'Activity Reminder'
 
+    message = fields.Char(string='Reminder Message', compute='_compute_reminder_message')
+
     @api.model
     def get_pending_activities(self):
         # Obtener las tareas pendientes del usuario actual
