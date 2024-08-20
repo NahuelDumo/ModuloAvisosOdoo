@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="activity_reminder_view" model="ir.ui.view">
         <field name="name">activity.reminder.view</field>
-        <field name="model">activity.reminder</field>
+        <field name="model">moduloavisosodoo.activity_reminder</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Activity Reminder">
                 <header>
-                    <button name="get_reminder_message" type="object" string="Reminder" class="oe_stat_button" />
+                    <button name="get_reminder_message" type="object" string="Show Reminder" class="oe_stat_button" />
                 </header>
                 <sheet>
                     <group>
-                        <field name="get_reminder_message" readonly="1" />
+                        <field name="message" readonly="1" />
                     </group>
                 </sheet>
             </form>
