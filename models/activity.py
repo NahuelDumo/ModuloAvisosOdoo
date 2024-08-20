@@ -1,6 +1,8 @@
 from odoo import models, fields, api
 
 class ActivityReminder(models.Model):
+    _name = 'activity_notification.activity_reminder'  # Nombre válido
+    _description = 'Activity Reminder'
 
     @api.model
     def get_pending_activities(self):
