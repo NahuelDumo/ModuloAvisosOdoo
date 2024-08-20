@@ -6,8 +6,7 @@
     'category': 'Project',
     'depends': ['base', 'project'],
     'data': [
-        'views/project_activity_alert_views.xml',  # Archivo que contiene la vista modificada
-        'data/ir_cron_data.xml',  # Archivo que define la tarea cron (si aplica)
+            'views/assets.xml',
     ],
     'installable': True,
     'application': False,

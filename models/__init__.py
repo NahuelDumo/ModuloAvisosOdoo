@@ -1,1 +1,1 @@
-from . import project_activity_alert
+from . import activity
