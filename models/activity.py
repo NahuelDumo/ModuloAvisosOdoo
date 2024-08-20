@@ -1,7 +1,8 @@
 from odoo import models, fields, api
 
 class ActivityReminder(models.Model):
-    _name = 'ModuloAvisosOdoo.activity_reminder'  # Nombre válido
+    _name = 'moduloavisosodoo.activity_reminder'  # ejemplo válido
+
     _description = 'Activity Reminder'
 
     @api.model
