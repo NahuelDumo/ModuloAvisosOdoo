@@ -6,9 +6,9 @@
     'category': 'Project',
     'depends': ['base', 'project'],
     'data': [
-            'views/view.xml'
+        'views/model_definition.xml',  # Archivo donde defines el modelo
+        'views/view.xml'               # Archivo donde defines el cron job
     ],
     'installable': True,
     'application': False,
-    
 }
