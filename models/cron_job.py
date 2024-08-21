@@ -8,7 +8,7 @@ class MyModuleCron(models.Model):
         users = self.env['res.users'].search([])
         for user in users:
             tasks = self.env['project.task'].search([
-                ('user_id', '=', user.id),
+                ('user_ids', 'in', user.id),
                 ('stage_id', '=', False)
             ])
             if tasks:
