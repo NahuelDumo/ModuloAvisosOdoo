@@ -1,8 +1,8 @@
 <odoo>
     <!-- Definir el modelo para el cron job -->
-    <record id="my_module_cron" model="ir.model">
-        <field name="name">my.module.cron</field>
-        <field name="model">my.module.cron</field>
+    <record id="model_my_module_cron" model="ir.model">
+        <field name="name">Modulo Avisos Odoo</field> <!-- Nombre legible del modelo -->
+        <field name="model">my.module.cron</field> <!-- Nombre técnico del modelo -->
         <field name="state">base</field>
     </record>
 </odoo>

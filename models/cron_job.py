@@ -3,7 +3,6 @@ from odoo import models, fields
 
 class MyModuleCron(models.Model):
     _name = 'my.module.cron'
-    _description = 'My Module Cron Job'
 
     def cron_check_pending_activities(self):
         users = self.env['res.users'].search([])
