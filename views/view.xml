@@ -1,9 +1,12 @@
-<record id="ir_cron_check_pending_activities" model="ir.cron">
-    <field name="name">Check Pending Activities</field>
-    <field name="model_id" ref="model_res_users"/>
-    <field name="state">code</field>
-    <field name="code">model.cron_check_pending_activities()</field>
-    <field name="interval_number">1</field>
-    <field name="interval_type">days</field>
-    <field name="numbercall">-1</field>
-</record>
+<odoo>
+    <!-- Define el cron job -->
+    <record id="ir_cron_check_pending_activities" model="ir.cron">
+        <field name="name">Check Pending Activities</field>
+        <field name="model_id" ref="model_my_module_cron"/>  <!-- Usa el modelo correcto aquí -->
+        <field name="state">code</field>
+        <field name="code">model.cron_check_pending_activities()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+    </record>
+</odoo>
