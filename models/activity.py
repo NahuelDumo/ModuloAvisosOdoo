@@ -12,7 +12,6 @@ class ActivityReminder(models.Model):
             record.message = record.get_reminder_message()
 
     def get_pending_activities(self):
-        # Obtener las tareas pendientes del usuario actual
         tasks = self.env['project.task'].search([('user_id', '=', self.env.uid), ('stage_id', '=', False)])
         return len(tasks)
 
@@ -22,13 +21,6 @@ class ActivityReminder(models.Model):
             return f'Tienes {pending_activities} actividades pendientes. Por favor, revise las tareas asignadas.'
         else:
             return 'No tienes actividades pendientes.'
-
-    def get_reminder_color(self):
-        pending_activities = self.get_pending_activities()
-        if pending_activities > 0:
-            return 'danger'  # Rojo
-        else:
-            return 'success'  # Verde
 
     def action_show_reminder(self):
         # Actualizar el mensaje de recordatorio
