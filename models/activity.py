@@ -9,7 +9,7 @@ class ActivityReminder(models.Model):
     @api.depends('message')
     def _compute_reminder_message(self):
         for record in self:
-            record.message = self.get_reminder_message()
+            record.message = record.get_reminder_message()
 
     def get_pending_activities(self):
         tasks = self.env['project.task'].search([('user_id', '=', self.env.uid), ('stage_id', '=', False)])
