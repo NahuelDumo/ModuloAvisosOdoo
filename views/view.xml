@@ -1,8 +1,7 @@
 <odoo>
-    <!-- Definir el cron job -->
     <record id="ir_cron_check_pending_activities" model="ir.cron">
         <field name="name">Modulo Avisos Odoo</field>
-        <field name="model_id" ref="model_my_module_cron"/> <!-- ID correcto del modelo -->
+        <field name="model_id" ref="model_my_module_cron"/> <!-- Ensure this ID is correct -->
         <field name="state">code</field>
         <field name="code">model.cron_check_pending_activities()</field>
         <field name="interval_number">1</field>
