@@ -1,12 +1,9 @@
-import logging
-
-_logger = logging.getLogger(__name__)
+from odoo import models
 
 class ResUsers(models.Model):
     _inherit = 'res.users'
 
-    def check_pending_activities(self):
-        _logger.info('Verificando tareas pendientes para el usuario: %s', self.name)
+    def cron_check_pending_activities(self):
         tasks = self.env['project.task'].search([
             ('user_id', '=', self.env.uid),
             ('stage_id', '=', False)
@@ -14,6 +11,3 @@ class ResUsers(models.Model):
         if tasks:
             message = f'Tienes {len(tasks)} actividades pendientes.'
             self.notify_info(message)
-            _logger.info('Usuario %s tiene %s tareas pendientes.', self.name, len(tasks))
-        else:
-            _logger.info('Usuario %s no tiene tareas pendientes.', self.name)
