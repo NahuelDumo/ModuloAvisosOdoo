@@ -8,12 +8,14 @@ class MyModuleCron(models.Model):
         users = self.env['res.users'].search([])
         for user in users:
             tasks = self.env['project.task'].search([
-                ('user_id', '=', user.id),
-                ('stage_id', '=', False)
+                ('user_ids', '=', user.id),
             ])
             if tasks:
                 # Almacenar el número de tareas pendientes en un parámetro de sistema
                 self.env['ir.config_parameter'].set_param(f'user.{user.id}.pending_tasks', len(tasks))
+            else:
+                # Limpiar el parámetro si no hay tareas pendientes
+                self.env['ir.config_parameter'].set_param(f'user.{user.id}.pending_tasks', 0)
 
     @api.model
     def get_pending_tasks_message(self):
