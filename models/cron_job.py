@@ -26,7 +26,7 @@ class MyModuleCron(models.Model):
             if tasks:
                 message = f'Tienes {len(tasks)} actividades pendientes.'
                 _logger.info(f'Enviando notificación al usuario {user.name}: {message}')
-                user.message_post(body=message, subject="Actividades Pendientes")
+                user.notify_info(message)
             else:
                 _logger.info(f'No hay tareas pendientes para el usuario {user.name}.')
         
