@@ -20,7 +20,7 @@ class MyModuleCron(models.Model):
                 continue
 
             tasks = self.env['project.task'].search([
-                ('user_ids', "in" ,'user.id' ),  # Cambiado a user_id
+                ('user_ids', "in" ,user.id ),  # Cambiado a user_id
             ])
             _logger.info(f'Usuario {user.name} tiene {len(tasks)} tareas pendientes.')
 
