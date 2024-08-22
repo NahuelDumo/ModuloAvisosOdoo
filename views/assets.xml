@@ -1,0 +1,14 @@
+<odoo>
+    <template id="assets_backend" name="my_module assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var message = "${notification|safe}";
+                    if (message) {
+                        alert(message); // Muestra la notificación emergente
+                    }
+                });
+            </script>
+        </xpath>
+    </template>
+</odoo>
