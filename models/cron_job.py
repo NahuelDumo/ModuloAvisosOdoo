@@ -1,4 +1,3 @@
-# file: models/cron_job.py
 import logging
 from odoo import models, fields
 
@@ -26,7 +25,14 @@ class MyModuleCron(models.Model):
             if tasks:
                 message = f'Tienes {len(tasks)} actividades pendientes.'
                 _logger.info(f'Enviando notificación al usuario {user.name}: {message}')
-                user.notify_info(message)
+                
+                # Enviar notificación al usuario a través del canal 'bus.bus'
+                self.env['bus.bus'].sendone((self._cr.dbname, 'res.partner', user.partner_id.id), {
+                    'type': 'simple_notification',
+                    'title': 'Actividades Pendientes',
+                    'message': message,
+                    'sticky': False,  # Si quieres que la notificación se quede en pantalla, cámbialo a True
+                })
             else:
                 _logger.info(f'No hay tareas pendientes para el usuario {user.name}.')
         
