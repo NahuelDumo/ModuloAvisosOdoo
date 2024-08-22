@@ -27,7 +27,7 @@ class MyModuleCron(models.Model):
                 _logger.info(f'Enviando notificación al usuario {user.name}: {message}')
                 
                 # Enviar notificación al usuario a través del canal 'bus.bus'
-                self.env['bus.bus'].sendone((self._cr.dbname, 'res.partner', user.partner_id.id), {
+                self.env['bus.bus']._sendone((self._cr.dbname, 'res.partner', user.partner_id.id), {
                     'type': 'simple_notification',
                     'title': 'Actividades Pendientes',
                     'message': message,
