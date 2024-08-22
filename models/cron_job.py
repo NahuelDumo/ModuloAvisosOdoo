@@ -1,26 +1,33 @@
-from odoo import models, api
+# file: models/cron_job.py
+import logging
+from odoo import models, fields
+
+# Configura el logger
+_logger = logging.getLogger(__name__)
 
 class MyModuleCron(models.Model):
     _name = 'my.module.cron'
 
-    @api.model
     def cron_check_pending_activities(self):
-        users = self.env['res.users'].search([])
-        for user in users:
-            tasks = self.env['project.task'].search([
-                ('user_ids', '=', user.id),
-            ])
-            if tasks:
-                # Almacenar el número de tareas pendientes en un parámetro de sistema
-                self.env['ir.config_parameter'].set_param(f'user.{user.id}.pending_tasks', len(tasks))
-            else:
-                # Limpiar el parámetro si no hay tareas pendientes
-                self.env['ir.config_parameter'].set_param(f'user.{user.id}.pending_tasks', 0)
+        _logger.info('Iniciando la verificación de actividades pendientes.')
 
-    @api.model
-    def get_pending_tasks_message(self):
-        user_id = self.env.uid
-        pending_tasks = self.env['ir.config_parameter'].get_param(f'user.{user_id}.pending_tasks', default=0)
-        if pending_tasks:
-            return f'Tienes {pending_tasks} actividades pendientes.'
-        return False
+        users = self.env['res.users'].search([])
+        _logger.info(f'Número de usuarios encontrados: {len(users)}')
+
+        for user in users:
+            # Convertir el ID del usuario a una lista para el operador 'in'
+            user_ids = [user.id]
+
+            tasks = self.env['project.task'].search([
+                ('user_ids', 'in', user_ids),
+            ])
+            _logger.info(f'Usuario {user.name} tiene {len(tasks)} tareas pendientes.')
+
+            if tasks:
+                message = f'Tienes {len(tasks)} actividades pendientes.'
+                _logger.info(f'Enviando notificación al usuario {user.name}: {message}')
+                user.notify_info(message)
+            else:
+                _logger.info(f'No hay tareas pendientes para el usuario {user.name}.')
+        
+        _logger.info('Finalizó la verificación de actividades pendientes.')

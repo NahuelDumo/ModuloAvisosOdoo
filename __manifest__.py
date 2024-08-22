@@ -8,7 +8,6 @@
     'data': [
         'views/model_definition.xml',  # Definición del modelo
         'views/view.xml',               # Definición del cron job
-        'views/assets.xml',             # Activos para la notificación
     ],
     'installable': True,
     'application': False,
