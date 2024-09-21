@@ -3,12 +3,13 @@
     'version': '1.0',
     'summary': 'Alert users with pending project activities upon login',
     'author': 'Nahuel Dumo',
-    'category': 'Project',
-    'depends': ['base', 'project'],
+    'category': 'Tools',
+    'depends': ['base', 'web', 'project'],
     'data': [
-        'views/model_definition.xml',  # Definición del modelo
-        'views/view.xml',               # Definición del cron job
+        'views/assets.xml',
     ],
+    'qweb': [],
     'installable': True,
-    'application': False,
-}
+    'application': True,
+    'auto_install': False,
+}   

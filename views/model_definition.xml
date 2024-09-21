@@ -1,7 +1,0 @@
-<odoo>
-    <record id="model_my_module_cron" model="ir.model">
-        <field name="name">Modulo Avisos Odoo</field>
-        <field name="model">my.module.cron</field>
-        <field name="state">base</field>
-    </record>
-</odoo>
