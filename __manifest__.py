@@ -6,9 +6,8 @@
     'category': 'Tools',
     'depends': ['base', 'web', 'project'],
     'data': [
-        'views/assets.xml',
+        'views/task_notification_view.xml',
     ],
-    'qweb': [],
     'installable': True,
     'application': True,
     'auto_install': False,

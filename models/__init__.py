@@ -1,1 +1,1 @@
-from . import cron_job
+from . import project_task  # Importa el archivo que extiende el modelo de tareas
