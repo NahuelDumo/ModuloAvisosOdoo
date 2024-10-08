@@ -1,18 +1,18 @@
 from odoo import models, fields, api
-from datetime import timedelta
+from datetime import datetime, timedelta
 
-class ProjectTask(models.Model):
+class project_task(models.Model):
     _inherit = 'project.task'
 
-    is_due_soon = fields.Boolean(compute='_compute_is_due_soon')
+    # Custom field to track tasks nearing their due date
+    is_due_soon = fields.Boolean(string='Due Soon', compute='_compute_due_soon', store=True)
 
     @api.depends('date_deadline')
-    def _compute_is_due_soon(self):
-        for task in self:
-            if task.date_deadline:
-                # Si la tarea está por vencer en 3 días o menos
-                due_date = task.date_deadline
-                today = fields.Date.today()
-                task.is_due_soon = (due_date - today).days <= 3
-            else:
-                task.is_due_soon = False
+    def _compute_due_soon(self):
+        for record in self:
+            if record.date_deadline:
+                due_date = datetime.strptime(record.date_deadline, '%Y-%m-%d')
+                if due_date - datetime.now() <= timedelta(hours=24):
+                    record.is_due_soon = True
+                else:
+                    record.is_due_soon = False
