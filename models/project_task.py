@@ -11,7 +11,7 @@ class project_task(models.Model):
     def _compute_due_soon(self):
         for record in self:
             if record.date_deadline:
-                due_date = datetime.strptime(record.date_deadline, '%Y-%m-%d')
+                due_date = datetime.strptime(str(record.date_deadline), '%Y-%m-%d')
                 if due_date - datetime.now() <= timedelta(hours=24):
                     record.is_due_soon = True
                 else:
