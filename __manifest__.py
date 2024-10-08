@@ -1,14 +1,15 @@
 {
-    'name': 'Project Activity Alert',
+    'name': 'Project Task Extension',
     'version': '1.0',
-    'summary': 'Alert users with pending project activities upon login',
-    'author': 'Nahuel Dumo',
-    'category': 'Tools',
-    'depends': ['base', 'web', 'project'],
+    'category': 'Project',
+    'summary': 'Ordenar tareas por fecha de vencimiento y resaltar tareas próximas a vencer',
+    'description': """
+        Este módulo extiende el módulo de Proyecto para ordenar las tareas por fecha de vencimiento y resaltar en rojo aquellas que tienen menos de 2 días para vencer.
+    """,
+    'depends': ['project'],
     'data': [
-        'views/task_notification_view.xml',
+        'views/project_task_view.xml',
     ],
     'installable': True,
-    'application': True,
-    'auto_install': False,
-}   
+    'application': False,
+}

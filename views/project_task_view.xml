@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_task_tree_custom" model="ir.ui.view">
+        <field name="name">project.task.tree.custom</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree"/>
+        <field name="arch" type="xml">
+            <!-- Ordenar por fecha de vencimiento -->
+            <xpath expr="//tree" position="attributes">
+                <attribute name="default_order">date_deadline asc</attribute>
+            </xpath>
+
+            <!-- Aplicar color rojo a tareas próximas a vencer -->
+            <xpath expr="//tree" position="inside">
+                <field name="is_due_soon" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='date_deadline']" position="attributes">
+                <attribute name="widget">priority_field</attribute>
+            </xpath>
+
+            <!-- Cambiar el color de las filas según el estado 'is_due_soon' -->
+            <tree decoration-danger="is_due_soon">
+                <field name="name"/>
+                <field name="date_deadline"/>
+                <field name="user_id"/>
+                <field name="stage_id"/>
+                <field name="kanban_state"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
